@@ -1,5 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import { routerConfig } from './routes/Router';
 
 
 
@@ -12,6 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
+routerConfig(app);
 
 
 app.listen(port, () => {
