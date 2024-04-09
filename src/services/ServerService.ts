@@ -1,6 +1,5 @@
 import { Request } from 'express';
 import { DB } from '../../prisma/DB';
-import ProfileService from './ProfileService';
 import {v4 as uuidv4} from 'uuid';
 class ServerService{
     
