@@ -8,12 +8,23 @@ datasource db {
   relationMode = "prisma"
 }
 
+model User {
+  id String @id @default(uuid())
+  username String 
+  email String @unique
+  password String
+  displayName String
+  profile Profile?
+
+
+}
+
 model Profile {
   id String @id @default(uuid())
   userId String @unique
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   name String
   imageUrl String @db.Text
-  email String @db.Text
 
   servers Server[]
   members Member[]

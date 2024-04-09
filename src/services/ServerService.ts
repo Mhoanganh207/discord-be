@@ -1,5 +1,5 @@
 import { Request } from 'express';
-import { db } from '../../prisma/db';
+import { DB } from '../../prisma/DB';
 import ProfileService from './ProfileService';
 import {v4 as uuidv4} from 'uuid';
 class ServerService{
@@ -14,7 +14,7 @@ class ServerService{
         if(!profile){
             throw new Error('Profile not found');
         }
-        const newServer = await db.server.create({
+        const newServer = await DB.server.create({
             data:{
                 profileId : profile.id,
                 name,

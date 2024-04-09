@@ -1,4 +1,4 @@
-import { db } from "../../prisma/db";
+import { DB } from "../../prisma/DB";
 
 class ProfileService{
 
@@ -7,7 +7,7 @@ class ProfileService{
     }
 
     public async getProfile(profileId: any){
-        const profile = await db.profile.findUnique({
+        const profile = await DB.profile.findUnique({
             where :{
                 id : profileId
             }
