@@ -51,7 +51,8 @@
           }
         }
       }
-    },"/api/server/{id}": {
+    },
+    "/api/server/{id}": {
       "get": {
         "tags": ["Server"],
         "description": "",
@@ -63,6 +64,17 @@
             "type": "string"
           }
         ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/server/all": {
+      "get": {
+        "tags": ["Server"],
+        "description": "Get All Server with profileId",
         "responses": {
           "200": {
             "description": "OK"
