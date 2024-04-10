@@ -10,8 +10,8 @@ import swaggerDocument from './swagger.json';
 
 
 dotenv.config();
-
 const app = express();
+
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
@@ -20,7 +20,7 @@ app.use(morgan("dev"));
 
 const corsMiddleware = (req : Request, res : Response, next : NextFunction) => {
   res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   next();
 };
 

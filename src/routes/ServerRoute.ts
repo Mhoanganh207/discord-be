@@ -5,8 +5,8 @@ import authMiddleware from '../middleware/AuthMiddleware';
 
 const router = express.Router();
 
-
-router.post('/', authMiddleware ,ServerController.createServer
+// Tam thoi tat authMiddleware do dang loi
+router.post('/' ,authMiddleware,  ServerController.createServer
 );
 
 
