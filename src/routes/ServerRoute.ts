@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.post('', authMiddleware ,ServerController.createServer);
 router.get("/:id", authMiddleware, ServerController.getServerById)
-router.get('',authMiddleware,ServerController.getServers )
+router.get('all',authMiddleware,ServerController.getServers )
 
 
 export default router;
