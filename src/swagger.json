@@ -7,11 +7,24 @@
   },
   "host": "localhost:4869",
   "basePath": "/",
+  "securityDefinitions": {
+    "bearerAuth": {
+      "type": "apiKey",
+      "name": "x-auth-token",
+      "scheme": "bearer",
+      "in": "header"
+    }
+  },"security": [
+    {
+      "AuthToken": []
+    }
+  ],
   "schemes": [
     "http"
   ],
   "paths": {
-    "/api/server/": { 
+    "/api/server": { 
+      
       "post": {
         "tags": ["Server"],
         "description": "Create a server (required access token)",
@@ -32,6 +45,24 @@
                 }
             }
         },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },"/api/server/{id}": {
+      "get": {
+        "tags": ["Server"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"

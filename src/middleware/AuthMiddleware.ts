@@ -7,8 +7,12 @@ const authMiddleware = async (req: Request, res: Response, next: NextFunction) =
           if(!accessToken){
               return res.status(401).json({message : 'Access token is required'});
           }
+          try{
           req.body.info = extractInforFromToken(accessToken.split(' ')[1]);
-          
+          }
+          catch (err : any) {
+              return res.status(401).json({message : err})
+          }
           
           next();
 }

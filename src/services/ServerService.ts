@@ -7,38 +7,52 @@ class ServerService{
         const {name , imageUrl} = req.body;
         
         // lấy profile bang email
-        let profile : any = await DB.user.findFirst({
-            where :{
-                email : req.body.info.email
-            },
-            include :{
-                profile : true
-            }
-        });
-        profile = profile?.profile;
-        if(!profile){
+     
+        let profileId: any = req.body.info.profileId;
+        if(!profileId){
             throw new Error('Profile not found');
         }
         const newServer = await DB.server.create({
             data:{
-                profileId : profile.id,
+                profileId : profileId,
                 name,
                 imageUrl,
                 inviteCode : uuidv4(),
                 channels : {
                     create : [
-                        {name : 'general' ,profileId : profile.id},
+                        {name : 'general' ,profileId : profileId},
                     ]
                 },
                 members : {
                     create : [
-                        {profileId : profile.id, role : 'ADMIN'}
+                        {profileId : profileId, role : 'ADMIN'}
                     ]
                 }
             }
     
         });
         return newServer;
+    }
+    
+    public async getServerById(req : Request){
+        const profileId = req.body.info.profileId;
+        const id =  req.params.id;
+        return await DB.server.findFirst({
+            where : {
+                id : id,
+                profileId : profileId
+            }
+        });
+    }
+
+    public async getAllServer(profileId : string){
+         console.log(profileId)
+         const servers = await DB.server.findMany({
+            where :{
+                profileId : profileId
+            }
+         })
+         return servers;
     }
 }
 
