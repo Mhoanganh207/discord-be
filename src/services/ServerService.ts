@@ -6,10 +6,16 @@ class ServerService{
     public async createServer(req: Request){
         const {name , imageUrl} = req.body;
         
-        // chưa hoàn thiện phải sử dụng middleware để lấy profile
-        const profile =  {
-            id : "dadkajd"
-        };
+        // lấy profile bang email
+        let profile : any = await DB.user.findFirst({
+            where :{
+                email : req.body.info.email
+            },
+            include :{
+                profile : true
+            }
+        });
+        profile = profile?.profile;
         if(!profile){
             throw new Error('Profile not found');
         }

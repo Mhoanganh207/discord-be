@@ -1,11 +1,12 @@
 import express from 'express';
 import ServerController from '../controllers/ServerController';
+import authMiddleware from '../middleware/AuthMiddleware';
 
 
 const router = express.Router();
 
 
-router.post('/', ServerController.createServer
+router.post('/', authMiddleware ,ServerController.createServer
 );
 
 
