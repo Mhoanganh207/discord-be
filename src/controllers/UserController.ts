@@ -9,6 +9,10 @@ class UserController {
     public async createUser(req: Request, res: Response) {
         try {
             await userValidator(req.body);
+            const isExisted = await UserService.getUser(req.body.email);
+            if(isExisted) {
+                res.status(400).json({message : "Email is already existed"});
+            }
             await UserService.createUser(req.body);
             res.status(201).json({ message: "User created successfully" });
         } catch (err: any) {
@@ -18,10 +22,9 @@ class UserController {
      
 
     public async logIn(req: Request, res: Response) {
-        console.log(req.body);
         const isAuth = await UserService.logIn(req.body);
         if (isAuth) {
-            const token = generateAccessToken(req.body.username);
+            const token = generateAccessToken(req.body.email);
             res.status(200).json({ token: token });
         }
         else {

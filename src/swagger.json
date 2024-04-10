@@ -14,7 +14,24 @@
     "/api/server/": { 
       "post": {
         "tags": ["Server"],
-        "description": "",
+        "description": "Create a server (required access token)",
+        "requestBody" : {
+            "content" : {
+                "application/json" : {
+                    "schema" : {
+                        "type" : "object",
+                        "properties" : {
+                            "name" : {
+                                "type" : "string"
+                            },
+                            "imageUrl" : {
+                                "type" : "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "responses": {
           "200": {
             "description": "OK"
@@ -96,7 +113,7 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "username": {
+                  "email": {
                     "type": "string"
                   },
                   "password": {
