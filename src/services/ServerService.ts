@@ -46,7 +46,7 @@ class ServerService{
     }
 
     public async getAllServer(profileId : string){
-         console.log(profileId)
+         console.log(profileId);
          const servers = await DB.server.findMany({
             where :{
                 profileId : profileId
