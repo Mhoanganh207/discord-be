@@ -1,4 +1,4 @@
-import { Request } from 'express';
+import { Request,Response  } from 'express';
 import { DB } from '../../prisma/DB';
 import {v4 as uuidv4} from 'uuid';
 class ServerService{
@@ -19,11 +19,12 @@ class ServerService{
         if(!profile){
             throw new Error('Profile not found');
         }
+        // Tam thoi nhu nay 
         const newServer = await DB.server.create({
             data:{
                 profileId : profile.id,
                 name,
-                imageUrl,
+                imageUrl, 
                 inviteCode : uuidv4(),
                 channels : {
                     create : [
