@@ -6,8 +6,8 @@ class ServerService{
     public async createServer(req: Request){
         const {name , imageUrl} = req.body;
         
-        // lấy profile bang email
-     
+    
+        // profileId là id của người tạo server được extract từ token 
         let profileId: any = req.body.info.profileId;
         if(!profileId){
             throw new Error('Profile not found');
