@@ -3,6 +3,7 @@ import { comparePassword, hashPassword } from "./AuthService";
 
 class UserService {
 
+    // tạo user
     public async createUser(user: any) {
         const newUser = await DB.user.create({
             data: {
@@ -15,21 +16,26 @@ class UserService {
         return newUser;
     }
 
+    // kiểm tra user có tồn tại không
     public async logIn(user: any) {
-        const userFound = await DB.user.findFirst({
-            where: {
-                email: user.email
+        let userFound : any = await DB.user.findFirst({
+            where :{
+                email : user.email
+            },
+            include :{
+                profile : true
             }
         });
         if (!userFound) {
-            return false;
+            return null;
         }
         if (!await comparePassword(user.password, userFound.password)) {
-            return false;
+            return null;
         }
-        return true;
+        return userFound.profile;
     }
 
+    // lấy user
     public async getUser(email: string) {
         const user = await DB.user.findFirst({
             where: {

@@ -22,9 +22,9 @@ class UserController {
      
 
     public async logIn(req: Request, res: Response) {
-        const isAuth = await UserService.logIn(req.body);
-        if (isAuth) {
-            const token = generateAccessToken(req.body.email);
+        const user : any = await UserService.logIn(req.body);
+        if (user) {
+            const token = generateAccessToken(user.id);
             res.status(200).json({ token: token });
         }
         else {
