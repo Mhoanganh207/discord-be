@@ -14,7 +14,8 @@
       "scheme": "bearer",
       "in": "header"
     }
-  },"security": [
+  },
+  "security": [
     {
       "AuthToken": []
     }
@@ -23,27 +24,28 @@
     "http"
   ],
   "paths": {
-    "/api/server": { 
-      
+    "/api/server": {
       "post": {
-        "tags": ["Server"],
+        "tags": [
+          "Server"
+        ],
         "description": "Create a server (required access token)",
-        "requestBody" : {
-            "content" : {
-                "application/json" : {
-                    "schema" : {
-                        "type" : "object",
-                        "properties" : {
-                            "name" : {
-                                "type" : "string"
-                            },
-                            "imageUrl" : {
-                                "type" : "string"
-                            }
-                        }
-                    }
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "imageUrl": {
+                    "type": "string"
+                  }
                 }
+              }
             }
+          }
         },
         "responses": {
           "200": {
@@ -54,7 +56,9 @@
     },
     "/api/server/{id}": {
       "get": {
-        "tags": ["Server"],
+        "tags": [
+          "Server"
+        ],
         "description": "",
         "parameters": [
           {
@@ -73,7 +77,9 @@
     },
     "/api/server/all": {
       "get": {
-        "tags": ["Server"],
+        "tags": [
+          "Server"
+        ],
         "description": "Get All Server with profileId",
         "responses": {
           "200": {
@@ -84,7 +90,9 @@
     },
     "/api/profile/{id}": {
       "get": {
-        "tags": ["Profile"],
+        "tags": [
+          "Profile"
+        ],
         "description": "",
         "parameters": [
           {
@@ -103,9 +111,11 @@
     },
     "/api/user/register": {
       "post": {
-        "tags": ["User"],
+        "tags": [
+          "User"
+        ],
         "description": "",
-         "requestBody" :{
+        "requestBody": {
           "content": {
             "application/json": {
               "schema": {
@@ -126,7 +136,7 @@
                 }
               }
             }
-         }
+          }
         },
         "responses": {
           "201": {
@@ -148,7 +158,9 @@
     },
     "/api/user/login": {
       "post": {
-        "tags": ["User"],
+        "tags": [
+          "User"
+        ],
         "description": "",
         "requestBody": {
           "content": {
@@ -173,6 +185,44 @@
           },
           "401": {
             "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/channel": {
+      "post": {
+        "tags": [
+          "Channel"
+        ],
+        "description": "Create a channel",
+        "parameters": [
+          {
+            "name": "serverId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
           }
         }
       }
