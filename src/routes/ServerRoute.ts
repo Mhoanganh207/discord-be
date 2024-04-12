@@ -8,6 +8,8 @@ const router = express.Router();
 router.get('/all',authMiddleware,ServerController.getServers )
 router.post('', authMiddleware ,ServerController.createServer);
 router.get("/:id", authMiddleware, ServerController.getServerById)
+router.delete("/:id", authMiddleware, ServerController.deleteServer)
+router.patch("/:id/leave", authMiddleware, ServerController.leaveServer)
 
 
 

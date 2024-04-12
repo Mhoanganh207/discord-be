@@ -21,6 +21,25 @@ class ServerController{
         res.json(await ServerService.getAllServer(profileId));
     }
 
+    // member bất kỳ trừ admin rời server
+    public async leaveServer(req : Request, res : Response){
+        if(!req.params.id){
+            res.status(400).json({message : "Server id is required"});
+            return;
+        }
+        const server = await ServerService.leaveServer(req);
+        res.json(server);
+    }
+
+    // admin xóa server
+    public async deleteServer(req : Request, res : Response){
+        if(!req.params.id){
+            res.status(400).json({message : "Server id is required"});
+            return;
+        }
+        const server = await ServerService.deleteServer(req);
+        res.json(server);
+    }
 
 
 

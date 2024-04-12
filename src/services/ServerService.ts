@@ -1,6 +1,8 @@
 import { Request } from 'express';
 import { DB } from '../../prisma/DB';
 import {v4 as uuidv4} from 'uuid';
+import { profile } from 'console';
+import { Server } from 'http';
 class ServerService{
     
     public async createServer(req: Request){
@@ -68,6 +70,43 @@ class ServerService{
             }
          })
          return servers;
+    }
+
+
+    public async leaveServer(req : Request){
+        const profileId = req.body.info.profileId;
+        const server = await DB.server.update({
+            where :{
+                id : req.params.id,
+                profileId : {
+                    not : profileId
+                },
+                members : {
+                    some : {
+                        profileId : profileId
+                    }
+                }
+            },
+            data :{
+                 members : {
+                        deleteMany : {
+                            profileId : profileId
+                        }
+                 }
+            }
+        })
+        return server;
+    }
+
+    public async deleteServer(req : Request){
+        const profileId = req.body.info.profileId;
+        const server = await DB.server.delete({
+            where :{
+                id : req.params.id,
+                profileId : profileId
+            }
+        })
+        return server;
     }
 }
 
