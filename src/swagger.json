@@ -88,20 +88,12 @@
         }
       }
     },
-    "/api/profile/{id}": {
+    "/api/profile": {
       "get": {
         "tags": [
           "Profile"
         ],
         "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK"

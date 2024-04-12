@@ -4,8 +4,7 @@ import ProfileService from "../services/ProfileService";
 class ProfileController{
  
      public async getProfile(req: Request, res: Response){
-            console.log(req.params.id);
-            const profile = await ProfileService.getProfile(req.params.id);
+            const profile = await ProfileService.getProfile(req.body.info.profileId);
             res.json(profile);
      }
 }
