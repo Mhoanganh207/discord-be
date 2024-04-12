@@ -218,6 +218,48 @@
           }
         }
       }
+    },
+    "/api/server/{id}/leave": {
+      "patch": {
+        "tags": [
+          "Server"
+        ],
+        "description": "Leave a server",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/server/{id}": {
+      "delete": {
+        "tags": [
+          "Server"
+        ],
+        "description": "Delete a server",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   }
 }
