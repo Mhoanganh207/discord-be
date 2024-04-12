@@ -6,10 +6,13 @@ class ProfileService{
 
     }
 
-    public async getProfile(profileId: any){
+    public async getProfile(profileId: string){
         const profile = await DB.profile.findUnique({
             where :{
                 id : profileId
+            },
+            include :{
+                user : true
             }
         })
 
