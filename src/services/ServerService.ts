@@ -1,8 +1,6 @@
 import { Request } from 'express';
 import { DB } from '../../prisma/DB';
 import {v4 as uuidv4} from 'uuid';
-import { profile } from 'console';
-import { Server } from 'http';
 class ServerService{
     
     public async createServer(req: Request){
