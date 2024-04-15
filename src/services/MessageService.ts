@@ -1,8 +1,9 @@
 import { Request, Response } from "express";
 import { DB } from "../../prisma/DB";
+import { SocketResponse } from "../models/SocketResponse";
 
 class MessageService {
-    async createMessage(req: Request, res: Response) {
+    async createMessage(req: Request, res: SocketResponse) {
         const { content, fileUrl } = req.body;
         const channelId = req.query.channelId;
         const serverId = req.query.serverId;
@@ -62,7 +63,7 @@ class MessageService {
                 }
             });
             const channelKey = `chat:${channelId}:messages`;
-            // res.socket.server.io.to(channelId as string).emit("newMessage", message);
+            res?.socket?.server?.io?.emit(channelKey, message);
         } catch (err: any) {
             res.status(500).json({ message: err.message });
         }

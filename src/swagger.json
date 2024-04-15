@@ -88,19 +88,6 @@
         }
       }
     },
-    "/api/profile": {
-      "get": {
-        "tags": [
-          "Profile"
-        ],
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/api/user/register": {
       "post": {
         "tags": [
@@ -257,6 +244,49 @@
         "responses": {
           "200": {
             "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/profile/":{
+      "get" : {
+        "tags" : [
+          "Profile"
+        ],
+        "description" : "Get profile",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    },
+    "/api/profile" : {
+      "post" : {
+        "tags" : [
+          "Profile"
+        ],
+        "description" : "Create a profile",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "name" : {
+                    "type" : "string"
+                  },
+                  "imageUrl" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK"
           }
         }
       }

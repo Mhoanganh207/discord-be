@@ -25,6 +25,7 @@
     "@types/joi": "^17.2.3",
     "@types/jsonwebtoken": "^9.0.6",
     "@types/jwt-decode": "^3.1.0",
+    "@types/socket.io": "^3.0.2",
     "@types/swagger-jsdoc": "^6.0.4",
     "bcrypt": "^5.1.1",
     "dotenv": "^16.4.5",
@@ -35,6 +36,7 @@
     "morgan": "^1.10.0",
     "nodemon": "^3.1.0",
     "openapi-typescript": "^6.7.5",
+    "socket.io": "^4.7.5",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.0",
     "uuid": "^9.0.1"
