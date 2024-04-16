@@ -42,7 +42,7 @@ class ServerController{
     }
 
     public async newInviteCode(req : Request, res : Response){
-        if(!req.params.serverId){
+        if(!req.params.id){
             res.status(400).json({message : "Server id is required"});
             return;
         }
