@@ -106,6 +106,65 @@ class ServerService{
         })
         return server;
     }
+
+    public async newInviteCode(req : Request){
+        const serverId =  req.params.id;
+        const profileId = req.body.info.profileId;
+        console.log(serverId);
+        console.log(profileId);
+
+        const server =  await DB.server.update({
+            where : {
+                id : serverId,
+                profileId : profileId
+
+            },
+            data : {
+                inviteCode : uuidv4()
+            }
+        })
+
+        return server;
+    }
+
+    public async joinServer(req : Request){
+        const inviteCode = req.params.inviteCode;
+        const profileId = req.body.info.profileId;
+        const server =  await DB.server.update({
+            where : {
+                inviteCode : inviteCode
+            },
+            data : {
+                members : {
+                    create :[
+                        {
+                            profileId : profileId
+                        }
+                    ]
+                }
+            }
+        })
+        return server;
+    }
+
+    public async updateServer(req : Request){
+        const serverId = req.params.id;
+        const name = req.body.name;
+        const imageUrl = req.body.imageUrl;
+        const profileId = req.body.info.profileId;
+
+        const server = await DB.server.update({
+            where : {
+                id : serverId,
+                profileId : profileId
+            },
+            data : {
+                name : name,
+                imageUrl : imageUrl
+            }
+        })
+        return server;
+    }
 }
 
 export default new ServerService();

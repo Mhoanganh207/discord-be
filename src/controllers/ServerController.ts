@@ -41,6 +41,33 @@ class ServerController{
         res.json(server);
     }
 
+    public async newInviteCode(req : Request, res : Response){
+        if(!req.params.serverId){
+            res.status(400).json({message : "Server id is required"});
+            return;
+        }
+        const server =  await ServerService.newInviteCode(req);
+        res.json(server);
+    }
+
+    public async joinServer(req : Request, res : Response){
+        if(!req.params.id){
+            res.status(400).json({message : "Server id is required"});
+            return;
+        }
+        const server =  await ServerService.joinServer(req);
+        res.json(server);
+    }
+
+    public async updateServer(req : Request, res : Response){
+        if(!req.params.id){
+            res.status(400).json({message : "Server id is required"});
+            return;
+        }
+        const server =  await ServerService.updateServer(req);
+        res.json(server);
+    }
+
 
 
 }
