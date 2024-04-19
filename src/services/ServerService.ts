@@ -42,6 +42,21 @@ class ServerService{
             where : {
                 id : id,
                 profileId : profileId
+            },
+            include: {
+                channels: {
+                    orderBy: {
+                        createdAt: "asc",
+                    },
+                },
+                members: {
+                    include: {
+                        profile: true,
+                    },
+                    orderBy:{
+                        role:"asc",
+                    }
+                }
             }
         });
     }
