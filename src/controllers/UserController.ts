@@ -4,6 +4,7 @@ import UserService from "../services/UserService";
 import { generateAccessToken } from "../services/AuthService";
 
 
+
 class UserController {
 
     public async createUser(req: Request, res: Response) {

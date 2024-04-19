@@ -88,27 +88,6 @@
         }
       }
     },
-    "/api/profile/{id}": {
-      "get": {
-        "tags": [
-          "Profile"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/api/user/register": {
       "post": {
         "tags": [
@@ -224,6 +203,230 @@
           "200": {
             "description": "OK"
           }
+        }
+      }
+    },
+    "/api/server/{id}/leave": {
+      "patch": {
+        "tags": [
+          "Server"
+        ],
+        "description": "Leave a server",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/server/{id}": {
+      "delete": {
+        "tags": [
+          "Server"
+        ],
+        "description": "Delete a server",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/profile/": {
+      "get": {
+        "tags": [
+          "Profile"
+        ],
+        "description": "Get profile",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/profile": {
+      "post": {
+        "tags": [
+          "Profile"
+        ],
+        "description": "Create a profile",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "imageUrl": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/server/{id}/invite-code": {
+      "patch": {
+        "tags": [
+          "Server"
+        ],
+        "description": "Generate new invite code",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/server/join/{inviteCode}": {
+      "patch": {
+        "tags": [
+          "Server"
+        ],
+        "description": "Join a server with invite code",
+        "parameters": [
+          {
+            "name": "inviteCode",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/server/{id}/": {
+      "patch": {
+        "tags": [
+          "Server"
+        ],
+        "description": "Update Server",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "imageUrl": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/member/{memberId}": {
+      "patch": {
+        "tags": [
+          "Member"
+        ],
+        "description": "change Member role",
+        "parameters": [
+          {
+            "name": "memberId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "serverId": {
+                    "type": "string"
+                  },
+                  "roles": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/member/{memberId}/": {
+      "delete": {
+        "tags": [
+          "Member"
+        ],
+        "description": "Delete Member",
+        "parameters": [
+          {
+            "name": "memberId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ]
+      },
+      "responses": {
+        "200": {
+          "description": "OK"
         }
       }
     }

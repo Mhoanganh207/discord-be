@@ -5,9 +5,14 @@ import authMiddleware from '../middleware/AuthMiddleware';
 
 const router = express.Router();
 
+router.patch("/:id/invite", authMiddleware, ServerController.newInviteCode)
 router.get('/all',authMiddleware,ServerController.getServers )
-router.post('', authMiddleware ,ServerController.createServer);
+router.post('', authMiddleware ,ServerController.createServer)
 router.get("/:id", authMiddleware, ServerController.getServerById)
+router.delete("/:id", authMiddleware, ServerController.deleteServer)
+router.patch("/:id/leave", authMiddleware, ServerController.leaveServer)
+router.patch("/join/:inviteCode", authMiddleware, ServerController.joinServer)
+router.patch("/:id", authMiddleware, ServerController.updateServer)
 
 
 
