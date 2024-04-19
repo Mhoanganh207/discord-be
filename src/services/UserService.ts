@@ -11,7 +11,14 @@ class UserService {
                 password: await hashPassword(user.password),
                 email: user.email,
                 displayName: user.displayName,
+                profile: {
+                    create: {
+                       imageUrl : '',
+                       name : ''
+                    }
+                }
             }
+
         })
         return newUser;
     }
