@@ -15,6 +15,27 @@ class ChannelController {
          }
     }
 
+
+    public async deleteChannel(req: Request, res: Response) {
+        try {
+            const deletedChannel = await ChannelService.deleteChannel(req);
+            res.json(deletedChannel);
+        }
+        catch(err: any){
+            res.status(400).json(err);
+        }
+    }
+
+    public async updateChannel(req: Request, res: Response) {
+        try {
+            const channel = await ChannelService.updateChannel(req);
+            res.json(channel);
+        }
+        catch(err: any){
+            res.status(400).json(err);
+        }
+    }
+
 }
 
 export default new ChannelController();
