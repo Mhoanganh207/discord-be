@@ -15,7 +15,7 @@ export const comparePassword = async (password: string, hash: string) => {
 
 export const generateAccessToken =  (profileId: number) => {
     const payload = { profileId }; 
-    return jwt.sign(payload, JWT_SECRET, { expiresIn: 60 * 60 });
+    return jwt.sign(payload, JWT_SECRET, { expiresIn: 60 * 60 * 24 * 30});
 }
 
 export const extractInforFromToken = (token: string) => {
