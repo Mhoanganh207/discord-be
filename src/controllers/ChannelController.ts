@@ -28,7 +28,7 @@ class ChannelController {
 
     public async updateChannel(req: Request, res: Response) {
         try {
-            const channel = await ChannelService.updateChannel(req);
+            const channel = await ChannelService.updateChannel(req,res);
             res.json(channel);
         }
         catch(err: any){

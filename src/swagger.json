@@ -430,12 +430,26 @@
         }
       }
     },
-    "/api/channel?serverId={serverId}&channelId={channelId}/": {
+    "/api/channel/{channelId}?serverId={serverId}/": {
       "delete": {
         "tags": [
           "Channel"
         ],
         "description": "Get Delete Channel",
+        "parameters": [
+          {
+            "name": "channelId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "serverId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -443,12 +457,26 @@
         }
       }
     },
-    "/api/channel?serverId={serverId}&channelId={channelId}": {
-      "put": {
+    "/api/channel/{channelId}?serverId={serverId}": {
+      "patch": {
         "tags": [
           "Channel"
         ],
         "description": "Update Channel",
+        "parameters": [
+          {
+            "name": "channelId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "serverId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {

@@ -1,4 +1,4 @@
-import { Request } from "express";
+import { Request,Response } from "express";
 import { DB } from "../../prisma/DB";
 
 class ChannelService{
@@ -37,7 +37,7 @@ class ChannelService{
 
     public async deleteChannel(req : Request){
         // @ts-ignore
-        const channelId : string = req.query.channelId;
+        const channelId : string = req.params.id;
         // @ts-ignore
         const serverId : string = req.query.serverId;
         const profileId = req.body.info.profileId;
@@ -62,13 +62,18 @@ class ChannelService{
         })
     }
 
-    public async updateChannel(req : Request){
+    public async updateChannel(req : Request,res : Response){
         const {name, type } = req.body;
         // @ts-ignore
-        const channelId : string = req.query.channelId;
+        const channelId : string = req.params.id;
         // @ts-ignore
         const serverId : string = req.query.serverId;
         const profileId = req.body.info.profileId;
+
+        if(name === "general"){
+            res.status(400).json({message : "Name cannot be general"});
+            return;
+        }
 
         return await DB.server.update({
             where : {
