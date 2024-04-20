@@ -5,8 +5,8 @@ import authMiddleware from "../middleware/AuthMiddleware";
 const router = Router();
 
 router.post("", authMiddleware ,ChannelController.createChannel);
-router.delete("", authMiddleware ,ChannelController.deleteChannel);
-router.put("", authMiddleware ,ChannelController.updateChannel);
+router.delete("/:id", authMiddleware ,ChannelController.deleteChannel);
+router.patch("/:id", authMiddleware ,ChannelController.updateChannel);
 
 
 export default router;
