@@ -43,20 +43,6 @@ class ServerService{
                 id : id,
                 profileId : profileId
             },
-<<<<<<< HEAD
-            include: {
-                channels: {
-                    orderBy: {
-                        createdAt: "asc",
-                    },
-                },
-                members: {
-                    include: {
-                        profile: true,
-                    },
-                    orderBy:{
-                        role:"asc",
-=======
             include :{
                 channels :{
                     orderBy :{
@@ -69,7 +55,6 @@ class ServerService{
                     },
                     orderBy : {
                         role : "asc"
->>>>>>> 6b735730fab9d16968202bdf2158c16a43c25641
                     }
                 }
             }
