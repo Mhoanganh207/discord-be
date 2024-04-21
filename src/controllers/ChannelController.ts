@@ -56,6 +56,21 @@ class ChannelController {
         }
     }
 
+    public async getChannelById(req: Request, res: Response) {
+        const channelId : string = req.params.id;
+        if(!channelId){
+            res.status(400).json({message : "Channel id is required"});
+            return;
+        }
+        try {
+            const channel = await ChannelService.getChannelById(req,res);
+            res.json(channel);
+        }
+        catch(err: any){
+            res.status(400).json(err);
+        }
+    }
+
 }
 
 export default new ChannelController();

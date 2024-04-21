@@ -101,6 +101,19 @@ class ChannelService{
         })
     }
 
+    public async getChannelById(req: Request,res : Response) {
+        // @ts-ignore
+        const channelId: string = req.params.id;
+        // @ts-ignore
+        return await DB.channel.findFirst({
+            where: {
+                id: channelId,
+                // Bạn có thể thêm điều kiện kiểm tra quyền ở đây nếu cần
+            }
+        });
+    }
+    
+
 }
 
 export default new ChannelService();
