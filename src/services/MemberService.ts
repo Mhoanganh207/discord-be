@@ -77,6 +77,18 @@ class MemberService {
         });
         return server;
     }
+
+    public async getMember(serverId: string, profileId: string){
+        return await DB.member.findFirst({
+            where : {
+                serverId : serverId,
+                profileId : profileId
+            },
+            include : {
+                profile : true
+            }
+        });
+    }
 }
 
 export default new MemberService();
