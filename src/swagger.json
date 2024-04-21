@@ -502,7 +502,45 @@
       }
     },
     "/api/member" : {
+      "get": {
+        "tags": [
+          "Member"
+        ],
+        "description": "Get current Member with serverId",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
         
+    },
+    "/api/conversation?memberOneId={memberOneId}&memberTwoId={memberTwoId}": {
+      "get": {
+        "tags": [
+          "Conversation"
+        ],
+        "description": "Get Conversation",
+        "parameters": [
+          {
+            "name": "memberOneId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "memberTwoId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   }
 }
