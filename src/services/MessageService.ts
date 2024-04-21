@@ -4,6 +4,7 @@ import io from "../app"
 
 class MessageService {
     async createMessage(req: Request, res: Response) {
+        
         const { content, fileUrl } = req.body;
         const channelId = req.query.channelId;
         const serverId = req.query.serverId;
