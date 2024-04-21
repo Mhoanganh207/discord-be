@@ -7,5 +7,6 @@ const router = Router();
 
 router.patch('/:memberId',authMiddleware,MemberController.changeMemberRole)
 router.delete('/:memberId',authMiddleware,MemberController.deleteMember)
+router.get("",authMiddleware,MemberController.getMember)
 
 export default router;
