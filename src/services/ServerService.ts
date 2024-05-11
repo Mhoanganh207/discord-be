@@ -145,8 +145,10 @@ class ServerService{
             },
           },
         });
+
+        console.log(existingMember);
         
-        if (!existingMember) {
+        if (!existingMember || !existingMember.members.length) {
           // If the profileId does not exist, perform the update
           const server = await DB.server.update({
             where: {

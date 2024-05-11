@@ -46,7 +46,7 @@ class MemberService {
 
     public async deleteMember(req : Request){
         const profileId = req.body.info.profileId;
-        const serverId = req.body.serverId;
+        const serverId = req.params.serverId;
         const memberId = req.params.memberId;
 
         const server = await DB.server.update({
