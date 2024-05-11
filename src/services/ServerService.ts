@@ -41,7 +41,11 @@ class ServerService{
         return await DB.server.findFirst({
             where : {
                 id : id,
-                profileId : profileId
+                members : {
+                    some : {
+                        profileId : profileId
+                    }
+                }
             },
             include :{
                 channels :{
@@ -65,7 +69,12 @@ class ServerService{
          console.log(profileId);
          const servers = await DB.server.findMany({
             where :{
-                profileId : profileId
+                members : {
+                    some : {
+                        profileId : profileId
+                    }
+                
+                }
             }
          })
          return servers;
