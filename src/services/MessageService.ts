@@ -1,10 +1,14 @@
 import { Request, Response } from "express";
 import { DB } from "../../prisma/DB";
 import io from "../app"
+import { Message } from "@prisma/client";
 
 class MessageService {
+
+    private MESSAGE_BATCH = 20;
+
     async createMessage(req: Request, res: Response) {
-        
+
         const { content, fileUrl } = req.body;
         const channelId = req.query.channelId;
         const serverId = req.query.serverId;
@@ -71,6 +75,63 @@ class MessageService {
 
 
 
+
+    }
+
+    public async getMessages(req: Request, res: Response) {
+        const channelId = req.query.channelId;
+        const cursor = req.query.cursor;
+
+        const profileId = req.body.info.profileId;
+
+        let messages: Message[] = [];
+
+        if (cursor) {
+            messages = await DB.message.findMany({
+                take: this.MESSAGE_BATCH,
+                skip: 1,
+                cursor: {
+                    id: cursor as string
+                },
+                where: {
+                    channelId: channelId as string
+                },
+                include: {
+                    member:
+                    {
+                        include: {
+                            profile: true
+                        }
+                    }
+                },
+                orderBy: {
+                    createdAt: "desc"
+                }
+            });
+        } else {
+            messages = await DB.message.findMany({
+                take: this.MESSAGE_BATCH,
+                where: {
+                    channelId: channelId as string
+                },
+                include: {
+                    member:
+                    {
+                        include: {
+                            profile: true
+                        }
+                    }
+                },
+                orderBy: {
+                    createdAt: "desc"
+                }
+            });
+        }
+        let nextCursor = null;
+        if (messages.length === this.MESSAGE_BATCH) {
+            nextCursor = messages[this.MESSAGE_BATCH - 1].id;
+        }
+        res.json({ messages, nextCursor });
 
     }
 }

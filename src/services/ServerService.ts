@@ -131,21 +131,43 @@ class ServerService{
     public async joinServer(req : Request){
         const inviteCode = req.params.inviteCode;
         const profileId = req.body.info.profileId;
-        const server =  await DB.server.update({
-            where : {
-                inviteCode : inviteCode
+        
+        // Check if the profileId already exists in the server members
+        const existingMember = await DB.server.findUnique({
+          where: {
+            inviteCode: inviteCode,
+          },
+          select: {
+            members: {
+              where: {
+                profileId: profileId,
+              },
             },
-            data : {
-                members : {
-                    create :[
-                        {
-                            profileId : profileId
-                        }
-                    ]
-                }
-            }
-        })
-        return server;
+          },
+        });
+        
+        if (!existingMember) {
+          // If the profileId does not exist, perform the update
+          const server = await DB.server.update({
+            where: {
+              inviteCode: inviteCode,
+            },
+            data: {
+              members: {
+                create: [
+                  {
+                    profileId: profileId,
+                  },
+                ],
+              },
+            },
+          });
+          return server;
+        } else {
+          // If the profileId already exists, return the existing server data
+          return existingMember;
+        }
+        
     }
 
     public async updateServer(req : Request){
