@@ -6,7 +6,7 @@ import authMiddleware from "../middleware/AuthMiddleware";
 const router = Router();
 
 router.patch('/:memberId',authMiddleware,MemberController.changeMemberRole)
-router.delete('/:memberId',authMiddleware,MemberController.deleteMember)
+router.delete('/:memberId/:serverId',authMiddleware,MemberController.deleteMember)
 router.get("",authMiddleware,MemberController.getMember)
 
 export default router;
