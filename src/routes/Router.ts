@@ -4,7 +4,9 @@ import userRouter from './UserRoute';
 import channelRouter from './ChannelRoute';
 import { Express } from 'express';
 import memberRouter from './MemberRoute';
-import conversationRouter from './ConversationRoute'
+import conversationRouter from './ConversationRoute';
+import messageRouter from './MessageRoute';
+
 
 export const routerConfig = (app: Express) => {
     app.use('/api/server', serverRouter);
@@ -13,5 +15,6 @@ export const routerConfig = (app: Express) => {
     app.use('/api/channel', channelRouter);
     app.use('/api/member', memberRouter);
     app.use('/api/conversation', conversationRouter);
+    app.use('/api/messages', messageRouter);
 };
 

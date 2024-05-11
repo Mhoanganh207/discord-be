@@ -23,6 +23,7 @@ class UserController {
      
 
     public async logIn(req: Request, res: Response) {
+        console.log(req.body);
         const user : any = await UserService.logIn(req.body);
         if (user) {
             const token = generateAccessToken(user.id);

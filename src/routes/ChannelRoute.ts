@@ -6,7 +6,7 @@ const router = Router();
 
 router.post("", authMiddleware ,ChannelController.createChannel);
 router.delete("/:id", authMiddleware ,ChannelController.deleteChannel);
-router.patch("/:id", authMiddleware ,ChannelController.updateChannel);
+router.put("/:id", authMiddleware ,ChannelController.updateChannel);
 router.get("/:id" ,ChannelController.getChannelById);
 
 export default router;

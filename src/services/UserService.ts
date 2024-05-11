@@ -33,6 +33,7 @@ class UserService {
                 profile : true
             }
         });
+        console.log(userFound);
         if (!userFound) {
             return null;
         }

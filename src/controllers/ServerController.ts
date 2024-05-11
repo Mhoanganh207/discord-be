@@ -51,7 +51,7 @@ class ServerController{
     }
 
     public async joinServer(req : Request, res : Response){
-        if(!req.params.id){
+        if(!req.params.inviteCode){
             res.status(400).json({message : "Server id is required"});
             return;
         }
