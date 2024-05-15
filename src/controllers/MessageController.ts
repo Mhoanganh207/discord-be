@@ -3,6 +3,7 @@ import MessageService from "../services/MessageService";
 
 class MessageController {
     public async sendMessage(req: Request, res: Response) {
+        console.log(req.body)
         if (!req.query.serverId) {
             res.status(400).json({ message: "Server id is required" });
             return;
@@ -12,11 +13,14 @@ class MessageController {
             return;
         }
 
+
+
         try {
             // Call the service to create the message
             const message = await MessageService.createMessage(req, res);
             res.json(message);
         } catch (err) {
+            console.log(err);
             // Handle any errors from the service
             res.status(500).json({ message: "Internal server error" });
         }

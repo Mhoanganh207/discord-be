@@ -1,4 +1,4 @@
-import { Request,Response  } from 'express';
+import { Request  } from 'express';
 import { DB } from '../../prisma/DB';
 import {v4 as uuidv4} from 'uuid';
 class ServerService{
