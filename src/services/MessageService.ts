@@ -131,7 +131,7 @@ class MessageService {
         if (messages.length === this.MESSAGE_BATCH) {
             nextCursor = messages[this.MESSAGE_BATCH - 1].id;
         }
-        res.json({ messages, nextCursor });
+        res.json({ items: messages, nextCursor });
 
     }
 }

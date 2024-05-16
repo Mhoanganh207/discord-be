@@ -78,10 +78,20 @@ const io = new Server(server, {
 io.on('connection', (socket: any) => {
   console.log('a user connected');
 
+  socket.emit('hello', 'world');
+
+  socket.on('hello', () => {
+    console.log('hello event received');
+  });
+
   socket.on('disconnect', () => {
     console.log('user disconnected');
   });
 });
+
+
+
+
 
 
 
