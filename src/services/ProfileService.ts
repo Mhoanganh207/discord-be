@@ -35,6 +35,25 @@ class ProfileService{
         return profile;
     }
 
+    public async updateProfile(req : Request){
+
+        const profileId = req.body.info.profileId;
+        const name = req.body.name;
+        const imageUrl = req.body.imageUrl;
+
+        const profile = await DB.profile.update({
+            where : {
+                id : profileId
+            },
+            data :{
+                name : name,
+                imageUrl : imageUrl
+            }
+        })
+
+        return profile;
+    }
+
 }
 
 

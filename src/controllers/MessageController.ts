@@ -3,7 +3,6 @@ import MessageService from "../services/MessageService";
 
 class MessageController {
     public async sendMessage(req: Request, res: Response) {
-        console.log(req.body)
         if (!req.query.serverId) {
             res.status(400).json({ message: "Server id is required" });
             return;

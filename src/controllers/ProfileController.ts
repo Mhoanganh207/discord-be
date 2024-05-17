@@ -12,6 +12,12 @@ class ProfileController {
           const profile = await ProfileService.createProfile(req);
           res.status(201).json(profile);
      }
+
+
+     public async updateProfile(req: Request, res: Response) {
+          const profile = await ProfileService.updateProfile(req);
+          res.status(200).json(profile);
+     }
 }
 
 export default new ProfileController();

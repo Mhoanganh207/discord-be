@@ -53,6 +53,38 @@ class UserService {
         return user;
     }
 
+    // cập nhật user
+    public async updatePassword(req: any, res: any) {
+        const profileId = req.body.info.profileId;
+        const oldPassword = req.body.oldPassword;
+        const newPassword = req.body.newPassword;
+
+        const user = await DB.user.findFirst({
+            where: {
+                profile : {
+                    id : profileId
+                }
+            }
+        }
+        );
+        if (user?.password) {
+            if (!await comparePassword(oldPassword, user.password)) {
+                res.status(400).json({ message: "Old password is incorrect" });
+                return;
+            }
+        }
+        await DB.user.update({
+            where: {
+                id: user?.id
+            },
+            data: {
+                password: await hashPassword(newPassword)
+            }
+        });
+        res.status(200).json({ message: "Password updated successfully" });
+        return;
+    }
+
 }
 
 export default new UserService();
