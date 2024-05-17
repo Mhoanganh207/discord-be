@@ -33,6 +33,15 @@ class UserController {
             res.status(401).json({ message: "Invalid credentials" });
         }
     }
+
+
+    public changePassword(req: Request, res: Response) {
+        try {
+            UserService.updatePassword(req,res);
+        } catch (err: any) {
+            res.status(500).json({ message: err.message });
+        }
+    }
 }
 
 export default new UserController();

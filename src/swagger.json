@@ -562,6 +562,37 @@
           }
         }
       }
+    },
+    "/api/user/change-password" : {
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "description": "Change user password",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "oldPassword": {
+                    "type": "string"
+                  },
+                  "newPassword": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   }
 }
