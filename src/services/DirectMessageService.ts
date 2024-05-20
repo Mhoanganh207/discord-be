@@ -88,7 +88,6 @@ import io from "../app";
         const conversationId = req.query.conversationId;
         const cursor = req.query.cursor;
 
-        const profileId = req.body.info.profileId;
 
         let messages: DirectMessage[] = [];
 

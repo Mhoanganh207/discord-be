@@ -137,6 +137,10 @@ model Conversation {
   memberTwoId String
   memberTwo Member @relation("MemberTwo", fields: [memberTwoId], references: [id], onDelete: Cascade)
 
+
+  profileId1 String
+  profileId2 String 
+
   directMessages DirectMessage[]
 
   @@index([memberTwoId])
