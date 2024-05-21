@@ -59,6 +59,11 @@ class UserService {
         const oldPassword = req.body.oldPassword;
         const newPassword = req.body.newPassword;
 
+        if (!oldPassword || !newPassword) {
+            res.status(400).json({ message: "Old password and new password are required" });
+            return;
+        }
+
         const user = await DB.user.findFirst({
             where: {
                 profile : {
