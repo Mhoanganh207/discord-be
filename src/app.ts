@@ -8,21 +8,10 @@ import http from 'http';
 import { Server } from 'socket.io';
 import cors from 'cors';
 
-
-
-
-
-
-
-
 dotenv.config();
 const app = express();
 
 const port = process.env.PORT || 3000;
-
-
-
-
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -41,14 +30,10 @@ const corsMiddleware = (req : Request, res : Response, next : NextFunction) => {
   }
 };
 
-
-
-
-
 app.use(corsMiddleware);
 
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: '*',
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'], // Include PATCH method
 }));
 
@@ -58,10 +43,6 @@ app.use(
   swaggerUi.serve,
   swaggerUi.setup(swaggerDocument, { explorer: true })
 );
-
-
-
-
 
 routerConfig(app);
 
@@ -73,7 +54,6 @@ const io = new Server(server, {
     allowedHeaders: ['Content-Type', 'Authorization'],
   }
 });
-
 
 io.on('connection', (socket: any) => {
   console.log('a user connected');
@@ -89,18 +69,8 @@ io.on('connection', (socket: any) => {
   });
 });
 
-
-
-
-
-
-
-
-
-
-
-server.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+server.listen(Number(port), '0.0.0.0', () => {
+  console.log(`Server running at http://0.0.0.0:${port}`);
 });
 
 export default io;
