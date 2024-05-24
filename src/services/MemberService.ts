@@ -1,6 +1,5 @@
 import { Request } from "express";
 import { DB } from "../../prisma/DB";
-import { Server } from '@prisma/client';
 
 class MemberService {
 

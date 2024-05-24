@@ -24,6 +24,7 @@ class UserController {
 
     public async logIn(req: Request, res: Response) {
         console.log(req.body);
+        try {
         const user : any = await UserService.logIn(req.body);
         if (user) {
             const token = generateAccessToken(user.id);
@@ -32,6 +33,11 @@ class UserController {
         else {
             res.status(401).json({ message: "Invalid credentials" });
         }
+        }
+        catch(err: any){
+            res.status(500).json({message : err.message});
+        }
+        
     }
 
 
