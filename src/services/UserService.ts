@@ -1,7 +1,10 @@
 import { DB } from "../../prisma/DB";
 import { comparePassword, hashPassword } from "./AuthService";
+import { sendEmail } from "./MailService";
 
 class UserService {
+
+    private baseUrl = process.env.BASE_URL || "http://localhost:3000";
 
     // tạo user
     public async createUser(user: any) {
@@ -11,15 +14,19 @@ class UserService {
                 password: await hashPassword(user.password),
                 email: user.email,
                 displayName: user.displayName,
+                status: 'inactive',
                 profile: {
                     create: {
                        imageUrl : '',
-                       name : ''
+                       name : '',
+
                     }
                 }
             }
 
         })
+
+        sendEmail(`${this.baseUrl}/verify?userId=` + newUser.id, newUser.email);
         return newUser;
     }
 
@@ -33,8 +40,10 @@ class UserService {
                 profile : true
             }
         });
-        console.log(userFound);
         if (!userFound) {
+            return null;
+        }
+        if (userFound.status !== 'active') {
             return null;
         }
         if (!await comparePassword(user.password, userFound.password)) {
@@ -49,7 +58,7 @@ class UserService {
             where: {
                 email: email
             }
-        })
+        });
         return user;
     }
 
@@ -89,6 +98,28 @@ class UserService {
         res.status(200).json({ message: "Password updated successfully" });
         return;
     }
+
+    public async verifyUser(userId: string) {
+        const user = await DB.user.findFirst({
+            where: {
+                id: userId
+            }
+        });
+        if (!user) {
+            throw new Error("User not found");
+        }
+        await DB.user.update({
+            where: {
+                id: userId
+            },
+            data: {
+                status: 'active'
+            }
+        });
+    }
+    
+
+
 
 }
 

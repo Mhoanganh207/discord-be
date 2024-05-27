@@ -15,6 +15,7 @@ model User {
   password String
   displayName String
   profile Profile?
+  status String
 
 
 }

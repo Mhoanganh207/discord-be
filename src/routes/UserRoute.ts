@@ -6,5 +6,6 @@ const router = express.Router();
 router.post('/register' ,UserController.createUser);
 router.post('/login',UserController.logIn);
 router.put('/change-password', authMiddleware,UserController.changePassword);
+router.get('/verify/:userId',UserController.verifyUser);
 
 export default router;

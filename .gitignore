@@ -9,3 +9,5 @@ bun.lockb
 discord.pem
 
 build
+
+.env
