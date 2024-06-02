@@ -26,7 +26,7 @@ class UserService {
 
         })
 
-        sendEmail(`${this.baseUrl}/verify?userId=` + newUser.id, newUser.email);
+        sendEmail(`${this.baseUrl}:3000/verify?userId=` + newUser.id, newUser.email);
         return newUser;
     }
 

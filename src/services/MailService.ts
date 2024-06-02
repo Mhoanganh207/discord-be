@@ -11,7 +11,7 @@ const transporter = nodemailer.createTransport({
 
 // Email options
 const mailOptions = (url : string,toMail: string) => { return {
-  from: 'Conversa', 
+  from: 'Conversa <mhoanganh05@gmail.com>', 
   to: toMail, 
   subject: 'Xác nhận tài khoản Conversa của bạn', 
   text: '', 
