@@ -14,7 +14,7 @@ class UserService {
                 password: await hashPassword(user.password),
                 email: user.email,
                 displayName: user.displayName,
-                status: 'inactive',
+                status: 'active',
                 profile: {
                     create: {
                        imageUrl : '',
@@ -49,7 +49,7 @@ class UserService {
         if (!await comparePassword(user.password, userFound.password)) {
             return null;
         }
-        return userFound.profile;
+        return userFound;
     }
 
     // lấy user

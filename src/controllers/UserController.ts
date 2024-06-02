@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { userValidator } from "../validators/UserValidator";
 import UserService from "../services/UserService";
 import { generateAccessToken } from "../services/AuthService";
+import { profile } from 'console';
 
 
 
@@ -33,8 +34,9 @@ class UserController {
         try {
         const user : any = await UserService.logIn(req.body);
         if (user) {
-            const token = generateAccessToken(user.id);
-            res.status(200).json({ token: token });
+           
+            const token = generateAccessToken(user.profile.id, user.role);
+            res.status(200).json({ token: token});
         }
         else {
             res.status(401).json({ message: "Invalid credentials" });

@@ -1,9 +1,9 @@
 import express from 'express';
 import MessageController from '../controllers/MessageController';
-import authMiddleware from '../middleware/AuthMiddleware';
+import userMiddleware from '../middleware/UserMiddleware';
 const router = express.Router();
 
-router.get('', authMiddleware ,MessageController.getMessages);
-router.post('', authMiddleware ,MessageController.sendMessage);
+router.get('', userMiddleware ,MessageController.getMessages);
+router.post('', userMiddleware ,MessageController.sendMessage);
 
 export default router;

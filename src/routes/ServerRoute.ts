@@ -1,18 +1,18 @@
 import express from 'express';
 import ServerController from '../controllers/ServerController';
-import authMiddleware from '../middleware/AuthMiddleware';
+import userMiddleware from '../middleware/UserMiddleware';
 
 
 const router = express.Router();
 
-router.patch("/:id/invite", authMiddleware, ServerController.newInviteCode)
-router.get('/all',authMiddleware,ServerController.getServers )
-router.post('', authMiddleware ,ServerController.createServer)
-router.get("/:id", authMiddleware, ServerController.getServerById)
-router.delete("/:id", authMiddleware, ServerController.deleteServer)
-router.patch("/:id/leave", authMiddleware, ServerController.leaveServer)
-router.patch("/join/:inviteCode", authMiddleware, ServerController.joinServer)
-router.patch("/:id", authMiddleware, ServerController.updateServer)
+router.patch("/:id/invite", userMiddleware, ServerController.newInviteCode)
+router.get('/all',userMiddleware,ServerController.getServers )
+router.post('', userMiddleware ,ServerController.createServer)
+router.get("/:id", userMiddleware, ServerController.getServerById)
+router.delete("/:id", userMiddleware, ServerController.deleteServer)
+router.patch("/:id/leave", userMiddleware, ServerController.leaveServer)
+router.patch("/join/:inviteCode", userMiddleware, ServerController.joinServer)
+router.patch("/:id", userMiddleware, ServerController.updateServer)
 
 
 

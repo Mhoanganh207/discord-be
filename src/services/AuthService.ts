@@ -13,8 +13,8 @@ export const comparePassword = async (password: string, hash: string) => {
     return bcypt.compare(password, hash);
 }
 
-export const generateAccessToken =  (profileId: number) => {
-    const payload = { profileId }; 
+export const generateAccessToken =  (profileId: number, role : String) => {
+    const payload = { profileId, role }; 
     return jwt.sign(payload, JWT_SECRET, { expiresIn: 60 * 60 * 24 * 30});
 }
 

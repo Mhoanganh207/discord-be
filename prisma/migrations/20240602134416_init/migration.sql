@@ -1,10 +1,23 @@
 -- CreateTable
+CREATE TABLE `User` (
+    `id` VARCHAR(191) NOT NULL,
+    `username` VARCHAR(191) NOT NULL,
+    `email` VARCHAR(191) NOT NULL,
+    `password` VARCHAR(191) NOT NULL,
+    `displayName` VARCHAR(191) NOT NULL,
+    `status` VARCHAR(191) NOT NULL,
+    `role` ENUM('ADMIN', 'USER') NOT NULL DEFAULT 'USER',
+
+    UNIQUE INDEX `User_email_key`(`email`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
 CREATE TABLE `Profile` (
     `id` VARCHAR(191) NOT NULL,
     `userId` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191) NOT NULL,
     `imageUrl` TEXT NOT NULL,
-    `email` TEXT NOT NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
 
@@ -77,6 +90,8 @@ CREATE TABLE `Conversation` (
     `id` VARCHAR(191) NOT NULL,
     `memberOneId` VARCHAR(191) NOT NULL,
     `memberTwoId` VARCHAR(191) NOT NULL,
+    `profileId1` VARCHAR(191) NOT NULL,
+    `profileId2` VARCHAR(191) NOT NULL,
 
     INDEX `Conversation_memberTwoId_idx`(`memberTwoId`),
     UNIQUE INDEX `Conversation_memberOneId_memberTwoId_key`(`memberOneId`, `memberTwoId`),

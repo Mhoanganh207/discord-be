@@ -1,9 +1,9 @@
 import express from 'express';
-import authMiddleware from '../middleware/AuthMiddleware';
+import userMiddleware from '../middleware/UserMiddleware';
 import DirectMessageController from '../controllers/DirectMessageController';
 const router = express.Router();
 
-router.get('', authMiddleware ,DirectMessageController.getMessages);
-router.post('', authMiddleware ,DirectMessageController.sendMessage);
+router.get('', userMiddleware ,DirectMessageController.getMessages);
+router.post('', userMiddleware ,DirectMessageController.sendMessage);
 
 export default router;

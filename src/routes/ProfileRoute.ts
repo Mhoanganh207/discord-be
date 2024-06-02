@@ -1,12 +1,12 @@
 import express from 'express';
 import ProfileController from '../controllers/ProfileController';
-import authMiddleware from '../middleware/AuthMiddleware';
+import userMiddleware from '../middleware/UserMiddleware';
 
 const router = express.Router();
 
-router.get('', authMiddleware ,ProfileController.getProfile);
-router.post('', authMiddleware ,ProfileController.createProfile);
-router.put('', authMiddleware ,ProfileController.updateProfile);
+router.get('', userMiddleware ,ProfileController.getProfile);
+router.post('', userMiddleware ,ProfileController.createProfile);
+router.put('', userMiddleware ,ProfileController.updateProfile);
 
 
 export default router;

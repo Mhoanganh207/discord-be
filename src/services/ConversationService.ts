@@ -1,6 +1,5 @@
 import { profile } from "console";
 import { DB } from "../../prisma/DB";
-import { Member } from '@prisma/client';
 
 class ConversationService{
 

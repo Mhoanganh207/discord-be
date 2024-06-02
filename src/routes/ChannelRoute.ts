@@ -1,12 +1,12 @@
 import { Router } from "express";
 import ChannelController from "../controllers/ChannelController";
-import authMiddleware from "../middleware/AuthMiddleware";
+import userMiddleware from "../middleware/UserMiddleware";
 
 const router = Router();
 
-router.post("", authMiddleware ,ChannelController.createChannel);
-router.delete("/:id", authMiddleware ,ChannelController.deleteChannel);
-router.put("/:id", authMiddleware ,ChannelController.updateChannel);
+router.post("", userMiddleware ,ChannelController.createChannel);
+router.delete("/:id", userMiddleware ,ChannelController.deleteChannel);
+router.put("/:id", userMiddleware ,ChannelController.updateChannel);
 router.get("/:id" ,ChannelController.getChannelById);
 
 export default router;
