@@ -6,7 +6,7 @@ import { sendEmail } from "./MailService";
 
 class UserService {
 
-    private baseUrl = process.env.BASE_URL || "http://localhost:3000";
+    private baseUrl = process.env.BASE_URL || "http://localhost";
 
     // tạo user
     public async createUser(user: any) {

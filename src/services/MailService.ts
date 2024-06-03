@@ -81,7 +81,7 @@ const mailOptions = (url : string,toMail: string) => { return {
 
           </div>
           <div class="footer">
-              <p>&copy; 2024 Your Company. All rights reserved.</p>
+              <p>&copy; Conversa. All rights reserved.</p>
           </div>
       </div>
   </body>
@@ -94,7 +94,7 @@ const mailOptions = (url : string,toMail: string) => { return {
 export const sendEmail = async (url: string, to : string) => {
   try {
     const mail = mailOptions(url,to);
-    console.log(mail);
+   
     const info = await transporter.sendMail(mail);
     console.log('Email sent: ' + info.response);
   } catch (error) {
