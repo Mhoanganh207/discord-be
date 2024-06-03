@@ -7,6 +7,8 @@ import swaggerDocument from './swagger.json';
 import http from 'http';
 import { Server } from 'socket.io';
 import cors from 'cors';
+import MeiliSearch from 'meilisearch';
+import AdminService from './services/AdminService';
 
 dotenv.config();
 const app = express();
@@ -46,6 +48,22 @@ app.use(
 
 routerConfig(app);
 
+export const meiliSearchClient = new MeiliSearch({
+  host: 'http://localhost:7700',
+  apiKey: 'aSampleMasterKey'
+});
+
+(async () => {
+  try {
+    const user = await AdminService.getAllUser();
+
+
+    await meiliSearchClient.index('discord').addDocuments(user);}
+    catch(err){
+      console.log(err);
+    
+    }
+  })();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
@@ -74,3 +92,6 @@ server.listen(Number(port), '0.0.0.0', () => {
 });
 
 export default io;
+
+
+

@@ -1,4 +1,6 @@
 import { DB } from "../../prisma/DB";
+import { updateIndex } from "../helper/SearchHelper";
+import { UserDTO } from "../models/types";
 import { comparePassword, hashPassword } from "./AuthService";
 import { sendEmail } from "./MailService";
 
@@ -14,7 +16,7 @@ class UserService {
                 password: await hashPassword(user.password),
                 email: user.email,
                 displayName: user.displayName,
-                status: 'active',
+                status: 'inactive',
                 profile: {
                     create: {
                        imageUrl : '',
@@ -25,6 +27,22 @@ class UserService {
             }
 
         })
+
+        let userAdd :UserDTO  = {
+            Id : newUser.id,
+            Username: newUser.username,
+            Email: newUser.email,
+            Role: newUser.role,
+            Displayname : newUser.displayName,
+            // @ts-ignore
+            CreatedAt: Date.now(),
+            // @ts-ignore
+            UpdatedAt: Date.now(),
+            // @ts-ignore
+            Status: 'inactive'
+        }
+
+        await updateIndex(userAdd);
 
         sendEmail(`${this.baseUrl}:3000/verify?userId=` + newUser.id, newUser.email);
         return newUser;

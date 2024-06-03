@@ -7,6 +7,7 @@ import memberRouter from './MemberRoute';
 import conversationRouter from './ConversationRoute';
 import messageRouter from './MessageRoute';
 import directMessageRouter from './DirectMessageRoute';
+import adminRoute from './AdminRoute';
 
 
 export const routerConfig = (app: Express) => {
@@ -18,6 +19,7 @@ export const routerConfig = (app: Express) => {
     app.use('/api/conversation', conversationRouter);
     app.use('/api/messages', messageRouter);
     app.use('/api/direct-messages', directMessageRouter);
+    app.use('/api/admin', adminRoute);
 
 };
 

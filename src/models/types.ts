@@ -1,6 +1,15 @@
-import { Server, Member, Profile } from '@prisma/client';
+import { Role } from "@prisma/client";
 
-export type ServerWithMembers = Server & {
-    members: (Member & { profile: Profile })[]
-};
+interface UserDTO{
+    Id : string
+    Username : string;
+    Email : string;
+    Displayname : string;
+    CreatedAt : Date
+    UpdatedAt : Date
+    Status : string
+    Role : Role
 
+}
+
+export { UserDTO }

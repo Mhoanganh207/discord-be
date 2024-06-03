@@ -36,7 +36,9 @@ class UserController {
         if (user) {
            
             const token = generateAccessToken(user.profile.id, user.role);
-            res.status(200).json({ token: token});
+            console.log(token);
+            console.log(user.role);
+            res.status(200).json({ token: token, role : user.role});
         }
         else {
             res.status(401).json({ message: "Invalid credentials" });
