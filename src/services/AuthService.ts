@@ -2,7 +2,7 @@ import * as bcypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 // @ts-ignore
-const JWT_SECRET:string = process.env.TOKEN_SECRET ;
+const JWT_SECRET:string = '09f26e402586e2faa8da4c98a35f1b20d6b033c60' ;
 
 export const hashPassword = async (password: string) => {
     return bcypt.hash(password, 10);
