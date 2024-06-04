@@ -108,7 +108,13 @@ class ChannelService{
         return await DB.channel.findFirst({
             where: {
                 id: channelId,
-                // Bạn có thể thêm điều kiện kiểm tra quyền ở đây nếu cần
+                server : {
+                    members : {
+                        some : {
+                            profileId : req.body.info.profileId
+                        }
+                    }
+                }
             }
         });
     }

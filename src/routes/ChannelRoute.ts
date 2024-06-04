@@ -7,7 +7,7 @@ const router = Router();
 router.post("", userMiddleware ,ChannelController.createChannel);
 router.delete("/:id", userMiddleware ,ChannelController.deleteChannel);
 router.put("/:id", userMiddleware ,ChannelController.updateChannel);
-router.get("/:id" ,ChannelController.getChannelById);
+router.get("/:id", userMiddleware ,ChannelController.getChannelById);
 
 export default router;
 
