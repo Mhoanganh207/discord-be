@@ -79,13 +79,13 @@ class AdminService{
             where : {id},
             data : {
                 username : user.username,
-                password : await hashPassword( user.password),
                 displayName : user.displayName,
                 profile : {
                     update : {
                         updatedAt : new Date()
                     }
-                }
+                },
+                status : user.status
                
             
             },
